@@ -1,28 +1,53 @@
-# Ứng dụng Quản lý Sở thích Cá nhân
+# Quản Lý Sở Thích Cá Nhân
 
-Ứng dụng web cho phép người dùng quản lý và theo dõi các sở thích cá nhân của mình. Được xây dựng với Node.js, Express, MongoDB và giao diện web hiện đại.
+Ứng dụng web giúp quản lý và theo dõi các sở thích cá nhân của bạn.
 
 ## Tính năng
 
+- Đăng ký và đăng nhập
 - Thêm, sửa, xóa sở thích
 - Phân loại sở thích theo danh mục
-- Theo dõi tiến độ của từng sở thích
+- Theo dõi tiến độ
 - Tìm kiếm và lọc sở thích
-- Giao diện người dùng thân thiện và responsive
-- Thông báo real-time khi thực hiện các thao tác
 
-## Yêu cầu hệ thống
+## Công nghệ sử dụng
 
-- Node.js (phiên bản 14 trở lên)
-- MongoDB (phiên bản 4.4 trở lên)
-- npm hoặc yarn
+- Frontend: HTML, CSS, JavaScript
+- Backend: Node.js, Express
+- Database: MongoDB
+- Authentication: JWT
 
-## Cài đặt
+## Cách sử dụng
 
+Website đã được deploy và có thể truy cập tại: [https://hobby-manager.onrender.com](https://hobby-manager.onrender.com)
+
+### Đăng ký tài khoản
+1. Click vào nút "Đăng ký"
+2. Điền thông tin: Tên, Email, Mật khẩu
+3. Click "Đăng ký" để tạo tài khoản
+
+### Đăng nhập
+1. Click vào nút "Đăng nhập"
+2. Nhập Email và Mật khẩu
+3. Click "Đăng nhập"
+
+### Quản lý sở thích
+- Thêm sở thích mới: Click "Thêm Sở Thích Mới"
+- Chỉnh sửa: Click nút "Sửa" trên card sở thích
+- Xóa: Click nút "Xóa" trên card sở thích
+- Xem chi tiết: Click vào card sở thích
+
+## Phát triển
+
+### Yêu cầu
+- Node.js
+- MongoDB
+
+### Cài đặt
 1. Clone repository:
 ```bash
-git clone <repository-url>
-cd hobby-manager
+git clone https://github.com/NguyenTruongTuan17022004/HobbyCSDLNC.git
+cd HobbyCSDLNC
 ```
 
 2. Cài đặt dependencies:
@@ -30,72 +55,20 @@ cd hobby-manager
 npm install
 ```
 
-3. Tạo file .env trong thư mục gốc và cấu hình:
-```
-MONGODB_URI=mongodb://localhost:27017/hobbiesDB
-PORT=3000
-```
-
-4. Khởi động MongoDB:
+3. Tạo file .env từ .env.example và cấu hình:
 ```bash
-# Đảm bảo MongoDB đang chạy trên máy của bạn
+cp .env.example .env
 ```
 
-5. Khởi động ứng dụng:
+4. Chạy ứng dụng:
 ```bash
-# Chế độ development
-npm run dev
-
-# Chế độ production
 npm start
 ```
 
-6. Truy cập ứng dụng:
-Mở trình duyệt và truy cập `http://localhost:3000`
+## Tác giả
 
-## Cấu trúc dự án
+Nguyễn Trường Tuấn
 
-```
-hobby-manager/
-├── models/
-│   └── Hobby.js
-├── routes/
-│   └── hobbies.js
-├── public/
-│   ├── index.html
-│   ├── styles.css
-│   └── app.js
-├── server.js
-├── package.json
-└── README.md
-```
-
-## API Endpoints
-
-- `GET /api/hobbies` - Lấy danh sách tất cả sở thích
-- `POST /api/hobbies` - Thêm sở thích mới
-- `PATCH /api/hobbies/:id` - Cập nhật sở thích
-- `DELETE /api/hobbies/:id` - Xóa sở thích
-
-## Công nghệ sử dụng
-
-- Backend:
-  - Node.js
-  - Express.js
-  - MongoDB với Mongoose
-- Frontend:
-  - HTML5
-  - CSS3 (với CSS Variables và Flexbox/Grid)
-  - JavaScript (ES6+)
-  - Font Awesome cho icons
-- Development:
-  - Nodemon cho hot-reloading
-  - dotenv cho quản lý biến môi trường
-
-## Đóng góp
-
-Mọi đóng góp đều được hoan nghênh! Vui lòng tạo issue hoặc pull request để đóng góp.
-
-## Giấy phép
+## License
 
 MIT 
