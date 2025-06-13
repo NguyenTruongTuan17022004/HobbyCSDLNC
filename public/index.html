@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Sở Thích Cá Nhân</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-heart"></i> Quản Lý Sở Thích Cá Nhân</h1>
+            <button id="addHobbyBtn" class="btn-primary">
+                <i class="fas fa-plus"></i> Thêm Sở Thích Mới
+            </button>
+        </header>
+
+        <div class="filters">
+            <select id="categoryFilter">
+                <option value="">Tất cả danh mục</option>
+                <option value="Thể thao">Thể thao</option>
+                <option value="Nghệ thuật">Nghệ thuật</option>
+                <option value="Âm nhạc">Âm nhạc</option>
+                <option value="Đọc sách">Đọc sách</option>
+                <option value="Du lịch">Du lịch</option>
+                <option value="Nấu ăn">Nấu ăn</option>
+                <option value="Khác">Khác</option>
+            </select>
+            <input type="text" id="searchInput" placeholder="Tìm kiếm sở thích...">
+        </div>
+
+        <div id="hobbyList" class="hobby-grid"></div>
+
+        <!-- Modal Thêm/Cập nhật Sở Thích -->
+        <div id="hobbyModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2 id="modalTitle">Thêm Sở Thích Mới</h2>
+                <form id="hobbyForm">
+                    <input type="hidden" id="hobbyId">
+                    <div class="form-group">
+                        <label for="name">Tên sở thích:</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Danh mục:</label>
+                        <select id="category" required>
+                            <option value="Thể thao">Thể thao</option>
+                            <option value="Nghệ thuật">Nghệ thuật</option>
+                            <option value="Âm nhạc">Âm nhạc</option>
+                            <option value="Đọc sách">Đọc sách</option>
+                            <option value="Du lịch">Du lịch</option>
+                            <option value="Nấu ăn">Nấu ăn</option>
+                            <option value="Khác">Khác</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Mô tả:</label>
+                        <textarea id="description" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="frequency">Tần suất:</label>
+                        <select id="frequency" required>
+                            <option value="Hàng ngày">Hàng ngày</option>
+                            <option value="Hàng tuần">Hàng tuần</option>
+                            <option value="Hàng tháng">Hàng tháng</option>
+                            <option value="Thỉnh thoảng">Thỉnh thoảng</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="progress">Tiến độ (%):</label>
+                        <input type="number" id="progress" min="0" max="100" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">Ghi chú:</label>
+                        <textarea id="notes"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">Lưu</button>
+                        <button type="button" class="btn-secondary" onclick="closeModal()">Hủy</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Modal Chi Tiết Sở Thích -->
+        <div id="detailModal" class="modal">
+            <div class="modal-content detail-modal-content">
+                <span class="close" id="closeDetailModal">&times;</span>
+                <h2 id="detailTitle">Chi tiết sở thích</h2>
+                <div id="detailBody"></div>
+            </div>
+        </div>
+
+        <!-- Modal Đăng nhập -->
+        <div id="loginModal" class="modal">
+            <div class="modal-content auth-modal-content">
+                <span class="close" id="closeLoginModal">&times;</span>
+                <h2>Đăng nhập</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email:</label>
+                        <input type="email" id="loginEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Mật khẩu:</label>
+                        <input type="password" id="loginPassword" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">Đăng nhập</button>
+                        <button type="button" class="btn-secondary" id="showRegisterBtn">Đăng ký</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Modal Đăng ký -->
+        <div id="registerModal" class="modal">
+            <div class="modal-content auth-modal-content">
+                <span class="close" id="closeRegisterModal">&times;</span>
+                <h2>Đăng ký</h2>
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="registerName">Tên:</label>
+                        <input type="text" id="registerName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email:</label>
+                        <input type="email" id="registerEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Mật khẩu:</label>
+                        <input type="password" id="registerPassword" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">Đăng ký</button>
+                        <button type="button" class="btn-secondary" id="showLoginBtn">Đăng nhập</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html> 
