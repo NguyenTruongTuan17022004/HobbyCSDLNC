@@ -30,6 +30,8 @@ const userInfoDiv = document.createElement('div');
 userInfoDiv.id = 'userInfo';
 header.appendChild(userInfoDiv);
 
+const API_BASE_URL = 'https://your-backend-url.herokuapp.com'; // Thay thế bằng URL backend của bạn
+
 // Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
     fetchHobbies();
@@ -72,7 +74,7 @@ async function fetchHobbies() {
     const token = localStorage.getItem('token');
     if (!token) return;
     try {
-        const response = await fetch('/api/hobbies', {
+        const response = await fetch(`${API_BASE_URL}/api/hobbies`, {
             headers: { 'Authorization': 'Bearer ' + token }
         });
         hobbies = await response.json();
@@ -87,7 +89,7 @@ async function createHobby(hobbyData) {
     const token = localStorage.getItem('token');
     if (!token) return;
     try {
-        const response = await fetch('/api/hobbies', {
+        const response = await fetch(`${API_BASE_URL}/api/hobbies`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -109,7 +111,7 @@ async function updateHobby(id, hobbyData) {
     const token = localStorage.getItem('token');
     if (!token) return;
     try {
-        const response = await fetch(`/api/hobbies/${id}`, {
+        const response = await fetch(`${API_BASE_URL}/api/hobbies/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -135,7 +137,7 @@ async function deleteHobby(id) {
     if (!confirm('Bạn có chắc chắn muốn xóa sở thích này?')) return;
 
     try {
-        await fetch(`/api/hobbies/${id}`, {
+        await fetch(`${API_BASE_URL}/api/hobbies/${id}`, {
             method: 'DELETE',
             headers: { 'Authorization': 'Bearer ' + token }
         });
